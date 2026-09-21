@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f2f0ea" />
+  <meta name="description" content="Design a complete look, from silhouette and color to pattern and accessories." />
+  <title>FORM — Outfit Studio</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="FORM home">F<span>O</span>RM</a>
+    <nav aria-label="Primary"><a class="active" href="#studio">Studio</a><a href="#looks">Looks</a><a href="#about">About</a></nav>
+    <button class="icon-button" id="resetAll" type="button" aria-label="Reset outfit" title="Reset outfit">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 9A8 8 0 1 1 4 14M4.5 9V4.5M4.5 9H9"/></svg>
+    </button>
+  </header>
+
+  <main id="studio" class="studio-shell">
+    <section class="editor-panel" aria-labelledby="studio-title">
+      <div class="eyebrow"><span>01</span> Design studio</div>
+      <h1 id="studio-title">Build your look.</h1>
+      <p class="intro">Choose each piece, then make it yours.</p>
+
+      <div class="step-tabs" role="tablist" aria-label="Outfit sections">
+        <button class="step-tab active" role="tab" aria-selected="true" data-section="tops"><span>01</span>Tops</button>
+        <button class="step-tab" role="tab" aria-selected="false" data-section="bottoms"><span>02</span>Bottoms</button>
+        <button class="step-tab" role="tab" aria-selected="false" data-section="accessories"><span>03</span>Accessories</button>
+      </div>
+
+      <div class="options" aria-live="polite">
+        <div class="option-block">
+          <div class="option-heading"><label id="pieceLabel">Jacket cut</label><output id="cutValue">Oversized</output></div>
+          <div class="segmented" id="cutOptions" role="group" aria-labelledby="pieceLabel"></div>
+        </div>
+
+        <div class="option-block">
+          <div class="option-heading"><label>Color</label><output id="colorValue">Cobalt</output></div>
+          <div class="swatches" id="colorOptions" role="radiogroup" aria-label="Color"></div>
+        </div>
+
+        <div class="option-block">
+          <div class="option-heading"><label>Pattern</label><output id="patternValue">Solid</output></div>
+          <div class="pattern-grid" id="patternOptions" role="radiogroup" aria-label="Pattern"></div>
+        </div>
+      </div>
+
+      <div class="editor-actions">
+        <button class="text-button" id="surprise" type="button">Surprise me <span>↗</span></button>
+        <button class="primary-button" id="nextStep" type="button">Next: Bottoms <span>→</span></button>
+      </div>
+    </section>
+
+    <section class="preview-panel" aria-label="Outfit preview">
+      <div class="preview-topline"><span>Live preview</span><span id="lookCode">LOOK 001</span></div>
+      <div class="stage" id="stage">
+        <div class="orb orb-one"></div><div class="orb orb-two"></div>
+        <div class="outfit" id="outfit" aria-label="A blue puffer outfit with dark trousers and silver shoulder bag">
+          <img class="look-base" src="assets/outfit.png" alt="" />
+          <img class="look-layer layer-top" src="assets/outfit.png" alt="" />
+          <img class="look-layer layer-bottom" src="assets/outfit.png" alt="" />
+          <img class="look-layer layer-accessory" src="assets/outfit.png" alt="" />
+          <div class="pattern pattern-top"></div><div class="pattern pattern-bottom"></div><div class="pattern pattern-accessory"></div>
+        </div>
+        <span class="floating-note note-a">drag to rotate</span><span class="floating-note note-b">3 pieces</span>
+      </div>
+      <div class="preview-footer">
+        <div><span class="tiny-label">Current piece</span><strong id="currentPiece">Cobalt oversized puffer</strong></div>
+        <button class="round-button" id="openSummary" aria-label="View final outfit">↗</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="summaryDialog">
+    <button class="dialog-close" id="closeSummary" aria-label="Close">×</button>
+    <div class="summary-copy"><div class="eyebrow"><span>04</span> Final outfit</div><h2>Your look is ready.</h2><p>A one-of-one combination, built by you.</p><div id="summaryList" class="summary-list"></div><button class="primary-button" id="editAgain">Keep editing <span>↗</span></button></div>
+    <div class="summary-visual"><img src="assets/outfit.png" alt="Completed custom outfit" /></div>
+  </dialog>
+  <div class="toast" id="toast" role="status">Outfit reset</div>
+  <script src="app.js"></script>
+</body>
+</html>
